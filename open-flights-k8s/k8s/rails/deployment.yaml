@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: open-flights-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: open-flights-web
+  template:
+    metadata:
+      labels:
+        app: open-flights-web
+    spec:
+      containers:
+       - name: open-flights-web
+    image: maniratnam022/open-flights-web:latest
+    ports:
+      - containerPort: 3000
+          env:
+            - name: DATABASE_HOST
+              value: postgres
+            - name: DATABASE_USER
+              value: postgres
+            - name: DATABASE_PASSWORD
+              value: password
+            - name: DATABASE_NAME
+              value: openflights
